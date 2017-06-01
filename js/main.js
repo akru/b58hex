@@ -2,9 +2,14 @@
 (function (Buffer){
 const bs58 = require('bs58');
 
-document.getElementById('request').onchange = () => {
-    const base58 = bs58.encode(new Buffer(document.getElementById('request').value.replace("0x", ""), 'hex'));
-    document.getElementById('result').value = base58;
+document.getElementById('hex').onchange = () => {
+    const base58 = bs58.encode(new Buffer(document.getElementById('hex').value.replace("0x", ""), 'hex'));
+    document.getElementById('base58').value = base58;
+};
+
+document.getElementById('base58').onchange = () => {
+    const hex = bs58.decode(document.getElementById('base58').value);
+    document.getElementById('hex').value = hex.toString('hex');
 };
 
 }).call(this,require("buffer").Buffer)
